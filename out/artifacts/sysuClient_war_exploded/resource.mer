@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="mysql" database="resource" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="rs_auditlog">
+      <Drawing expanded="true" location="1586,1636" dimensions="189,110" />
+      <Columns>
+        <Column name="rowid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="userID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="event" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="eventTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_autotask">
+      <Drawing expanded="true" location="0,1951" dimensions="213,90" />
+      <Columns>
+        <Column name="wir_id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="wirID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="wir" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_calendar">
+      <Drawing expanded="true" location="552,1636" dimensions="261,210" />
+      <Columns>
+        <Column name="entryID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="resourceID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="startTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="endTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="agent" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="entryStatus" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="entryComment" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="workload" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="chainID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_calendarlog">
+      <Drawing expanded="true" location="304,1636" dimensions="203,250" />
+      <Columns>
+        <Column name="entryID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="phase" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="caseID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="activityName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="resourceID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="resourceRec" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="agent" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="workload" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="entryTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="entryStatus" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="calendarKey" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_capability">
+      <Drawing expanded="true" location="0,1192" dimensions="246,90" />
+      <Columns>
+        <Column name="CapabilityID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Capability" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_eventlog">
+      <Drawing expanded="true" location="858,1636" dimensions="201,190" />
+      <Columns>
+        <Column name="rowid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="caseID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specKey" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="taskID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="itemID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="participantID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="event" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="eventTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_nonhumancategory">
+      <Drawing expanded="true" location="1481,1440" dimensions="213,110" />
+      <Columns>
+        <Column name="CategoryID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="CategoryName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Notes" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_nonhumanresource">
+      <Drawing expanded="true" location="1453,943" dimensions="268,208" />
+      <Columns>
+        <Column name="ResourceID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="ResourceName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="Notes" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="Available" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="BlockedDuration" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="BlockedType" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="CategoryID" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="SubCategoryID" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_nonhumansubcategory">
+      <Drawing expanded="true" location="1399,1251" dimensions="231,89" />
+      <Columns>
+        <Column name="SubCategoryID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="SubcategoryName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="CategoryID" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_orggroup">
+      <Drawing expanded="true" location="1050,1462" dimensions="245,129" />
+      <Columns>
+        <Column name="GroupID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="GroupName" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="GroupType" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="BelongsTo" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_participant_capability">
+      <Drawing expanded="true" location="92,943" dimensions="206,69" />
+      <Columns>
+        <Column name="ParticipantID" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="CapabilityID" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_participant_position">
+      <Drawing expanded="true" location="1139,943" dimensions="206,69" />
+      <Columns>
+        <Column name="ParticipantID" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="P_ID" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_participant_role">
+      <Drawing expanded="true" location="588,943" dimensions="206,69" />
+      <Columns>
+        <Column name="ParticipantID" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="RoleID" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_participant">
+      <Drawing expanded="true" location="346,1112" dimensions="268,250" />
+      <Columns>
+        <Column name="ParticipantID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="Notes" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="Available" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="BlockedDuration" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="BlockedType" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="LastName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="FirstName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="UserID" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="pword" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Administrator" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_piledtasks">
+      <Drawing expanded="true" location="1104,1636" dimensions="196,150" />
+      <Columns>
+        <Column name="p_id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="specID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specVersion" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specURI" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="taskid" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="piledid" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_position">
+      <Drawing expanded="true" location="1114,1163" dimensions="240,148" />
+      <Columns>
+        <Column name="P_ID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="PositionID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Title" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="OrgGroup" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="ReportsTo" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_queueitems">
+      <Drawing expanded="true" location="176,0" dimensions="190,88" />
+      <Columns>
+        <Column name="q_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="valueItem" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="key_id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_role">
+      <Drawing expanded="true" location="744,1182" dimensions="240,109" />
+      <Columns>
+        <Column name="RoleID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="RoleName" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="Description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="BelongsTo" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_speclog">
+      <Drawing expanded="true" location="1345,1636" dimensions="196,110" />
+      <Columns>
+        <Column name="rowid" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="specID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specVersion" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specURI" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_userprivileges">
+      <Drawing expanded="true" location="0,1636" dimensions="259,270" />
+      <Columns>
+        <Column name="ParticipantID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="canChooseItemToStart" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canStartConcurrent" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canReorder" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canViewAllOffered" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canViewAllAllocated" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canViewAllExecuting" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canViewTeamItems" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canViewOrgGroupItems" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canChainExecution" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="canManageCases" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="allowAll" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_workitemcache">
+      <Drawing expanded="true" location="292,188" dimensions="310,710" />
+      <Columns>
+        <Column name="wir_id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="specID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specVersion" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="specURI" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="caseID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="taskID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="uniqueID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="taskName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="documentation" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="documentationChanged" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="ExtendedAttributes" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="canCreate" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="codelet" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="deferredID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="firingTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="enablementTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="startTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="completionTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="status" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="resourceStatus" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="startedBy" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="completedBy" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="dataList" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="dataListUpdated" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="enabledTimeMS" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="firingTimeMS" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="startTimeMS" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="completionTimeMS" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="timertrigger" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="timerexpiry" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="customformurl" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="logPredicateStarted" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="logPredicateCompletion" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONGTEXT" size="2147483647" />
+        </Column>
+        <Column name="tag" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="rs_workqueue">
+      <Drawing expanded="true" location="0,498" dimensions="192,90" />
+      <Columns>
+        <Column name="q_id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="ownerID" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="queueType" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="FKC37F08EC2D70C30B">
+      <Details primary_table="rs_nonhumancategory" foreign_table="rs_nonhumanresource">
+        <PrimaryKeys>
+          <ColumnName name="CategoryID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="CategoryID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKC37F08ECCC186843">
+      <Details primary_table="rs_nonhumansubcategory" foreign_table="rs_nonhumanresource">
+        <PrimaryKeys>
+          <ColumnName name="SubCategoryID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="SubCategoryID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK23F7C5C02D70C30B">
+      <Details primary_table="rs_nonhumancategory" foreign_table="rs_nonhumansubcategory">
+        <PrimaryKeys>
+          <ColumnName name="CategoryID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="CategoryID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK611F065915B9B2C4">
+      <Details primary_table="rs_orggroup" foreign_table="rs_orggroup">
+        <PrimaryKeys>
+          <ColumnName name="GroupID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="BelongsTo" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK7ECAFDA2381FE447">
+      <Details primary_table="rs_participant" foreign_table="rs_participant_capability">
+        <PrimaryKeys>
+          <ColumnName name="ParticipantID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="ParticipantID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK7ECAFDA26AD42F05">
+      <Details primary_table="rs_capability" foreign_table="rs_participant_capability">
+        <PrimaryKeys>
+          <ColumnName name="CapabilityID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="CapabilityID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK98A40C3322A3D8AD">
+      <Details primary_table="rs_position" foreign_table="rs_participant_position">
+        <PrimaryKeys>
+          <ColumnName name="P_ID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="P_ID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK98A40C33381FE447">
+      <Details primary_table="rs_participant" foreign_table="rs_participant_position">
+        <PrimaryKeys>
+          <ColumnName name="ParticipantID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="ParticipantID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKB33E0880381FE447">
+      <Details primary_table="rs_participant" foreign_table="rs_participant_role">
+        <PrimaryKeys>
+          <ColumnName name="ParticipantID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="ParticipantID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FKB33E0880BA28D9C1">
+      <Details primary_table="rs_role" foreign_table="rs_participant_role">
+        <PrimaryKeys>
+          <ColumnName name="RoleID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="RoleID" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK40A7998791B3E050">
+      <Details primary_table="rs_orggroup" foreign_table="rs_position">
+        <PrimaryKeys>
+          <ColumnName name="GroupID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="OrgGroup" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK40A79987D6069DD">
+      <Details primary_table="rs_position" foreign_table="rs_position">
+        <PrimaryKeys>
+          <ColumnName name="P_ID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="ReportsTo" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK5D5A65ED88FE9043">
+      <Details primary_table="rs_workqueue" foreign_table="rs_queueitems">
+        <PrimaryKeys>
+          <ColumnName name="q_id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="q_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK5D5A65EDB319E1CC">
+      <Details primary_table="rs_workitemcache" foreign_table="rs_queueitems">
+        <PrimaryKeys>
+          <ColumnName name="wir_id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="valueItem" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK58255FD4C4245A3F">
+      <Details primary_table="rs_role" foreign_table="rs_role">
+        <PrimaryKeys>
+          <ColumnName name="RoleID" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="BelongsTo" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+

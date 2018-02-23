@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<package name="new" namespace="/new" extends="struts-default">
+		
+		<action name="index" class="action.IndexAction">
+            <result name="success">/new/index.jsp</result>
+        </action>
+        		
+		<action name="workqueue" class="action.WorkQueueAction">
+            <result name="success">/new/workqueue.jsp</result>
+        </action>
+        
+        <action name="case" class="action.CaseAction">
+            <result name="success">/new/case.jsp</result>
+        </action>
+                
+        <action name="app" class="action.AppAction">
+            <result name="success">/new/app.jsp</result>
+        </action>
+        
+        <action name="participate" class="action.CaseAction">
+        	<result name="success">/new/participate.jsp</result>
+        </action>
+        
+        <action name="monitor" class="action.SpecAction">
+        	<result name="success">/new/monitor.jsp</result>
+        </action>
+        
+        <action name="service" class="action.ServiceAction">
+        	<result name="success">/new/service.jsp</result>
+        </action>
+
+	</package>
+	
+	<package name="Json" namespace="/new" extends="json-default">
+        
+        
+        <!-- 获取角色 -->
+        <action name="getAllRole" class="action.UserAction" method="getAllRole">
+            <result type="json">
+                <param name="root">rolesJson</param>
+            </result>
+        </action>
+        
+        
+		<!-- 加载四个队列 -->
+       	<action name="loadStartedQueue" class="action.WorkQueueAction" method="loadStarted">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+
+       	<action name="loadAllocatedQueue" class="action.WorkQueueAction" method="loadAllocated">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+        
+       	<action name="loadOfferedQueue" class="action.WorkQueueAction" method="loadOffered">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+
+       	<action name="loadSuspendedQueue" class="action.WorkQueueAction" method="loadSuspended">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+        <!-- end -->
+                       
+       	<action name="loadCases" class="action.CaseAction" method="participate">
+            <result type="json">
+                <param name="root">casesJson</param>
+            </result>
+        </action>
+        
+        <action name="loadCompletedCases" class="action.CaseAction" method="participateOfComplete">
+            <result type="json">
+                <param name="root">casesJson</param>
+            </result>
+        </action>
+        
+       	<action name="loadMineCases" class="action.CaseAction" method="launchByMe">
+            <result type="json">
+                <param name="root">mineCasesJson</param>
+            </result>
+        </action>
+        
+        <action name="loadCaseHistory" class="action.CaseAction" method="history">
+            <result type="json">
+                <param name="root">caseHistoryJson</param>
+            </result>        
+        </action>
+        
+        <action name="getMySpec" class="action.SpecAction" method="getMySpec">
+        	<result type="json">
+        		<param name="root">specsJson</param>
+        	</result>
+        </action>
+                
+        <action name="unload" class="action.SpecAction" method="unloadSpec">
+        	<result type="json">
+        		<param name="root">specsJson</param>
+        	</result>
+        </action>
+        
+        <action name="loadSpecsMonitor" class="action.SpecAction" method="allSpecsMonitor">
+        	<result type="json">
+        		<param name="root">specsJson</param>
+        	</result>
+        </action>
+        
+        <action name="follow" class="action.SpecAction" method="follow">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="unfollow" class="action.SpecAction" method="unfollow">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="accept" class="action.WorkItemAction" method="accept">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="start" class="action.WorkItemAction" method="start">
+        	<result type="json"></result>
+        </action>
+		
+		<action name="acceptstart" class="action.WorkItemAction" method="acceptstart">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="deallocate" class="action.WorkItemAction" method="deallocate">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="reallocate" class="action.WorkItemAction" method="reallocate">
+        	<result type="json"></result>
+        </action>
+              
+        <action name="delegate" class="action.WorkItemAction" method="delegate">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="skip" class="action.WorkItemAction" method="skip">
+        	<result type="json"></result>
+        </action>
+        
+<!--         <action name="pile" class="action.WorkItemAction" method="pile">
+        	<result type="json"></result>
+        </action> -->
+        
+        <action name="suspend" class="action.WorkItemAction" method="suspend">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="unsuspend" class="action.WorkItemAction" method="unsuspend">
+        	<result type="json"></result>
+        </action>
+             
+        <action name="view" class="action.WorkItemAction" method="viewJson">
+        	<result type="json">
+        		<param name="root">paramsJson</param>
+        	</result>
+        </action>
+        
+         <action name="getSpecInfo" class="action.SpecAction" method="getSpecInfo">
+            <result type="json">
+        		<param name="root">SpecInfoJson</param>
+        	</result>
+        </action>
+        
+        <action name="downloadLog" class="action.SpecAction" method="downloadLog">
+            <result type="json">
+        		<param name="root">SpecInfoJson</param>
+        	</result>
+        </action>
+        
+        <action name="save" class="action.WorkItemAction" method="updateJson">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="complete" class="action.WorkItemAction" method="complete">
+            <result type="json"></result>
+        </action>
+        
+       	<action name="loadServs" class="action.ServiceAction" method="loadRegisteredServs">
+        	<result type="json">
+        		<param name="root">servsJson</param>
+        	</result>
+        </action>
+        
+        <action name="register" class="action.ServiceAction" method="register">
+    		<result type="json">
+        		<param name="root">servsJson</param>
+        	</result>
+    	</action>
+    	
+    	<action name="removeServ" class="action.ServiceAction" method="remove">
+    		<result type="json">
+        		<param name="root">servsJson</param>
+        	</result>
+    	</action>
+        
+        <action name="loadRunningCases" class="action.CaseAction" method="loadRunningCases">
+        	<result type="json">
+        		<param name="root">caseRunningJson</param>
+        	</result>
+        </action>
+        
+        <action name="launch" class="action.CaseAction" method="launchSpec">
+        	<result type="json">
+        		<param name="root">caseRunningJson</param>
+        	</result>
+        </action>
+              
+        <action name="cancel" class="action.CaseAction" method="cancelCase">
+        	<result type="json">
+        		<param name="root">caseRunningJson</param>
+        	</result>
+        </action>
+  
+	</package>
+	
+	<package name="notjson" namespace="/new" extends="struts-default">
+	
+		<action name="upload" class="action.CaseAction" method="upload">
+	    	<result name="success" type="redirectAction">case</result>
+	    </action>
+	    
+    </package>
+	
+	<package name="app" namespace="/new" extends="json-default">
+
+        <action name="loadApps" class="action.AppAction" method="all">
+            <result type="json">
+                <param name="root">appsJson</param>
+            </result>
+        </action>
+        
+        <action name="getAllSpec" class="action.AppAction" method="getAllSpec">
+            <result type="json">
+                <param name="root">appsJson</param>
+            </result>
+        </action>
+        
+        <action name="loadAvailableApps" class="action.AppAction" method="available">
+            <result type="json">
+                <param name="root">appsJson</param>
+            </result>
+        </action>
+            
+        <action name="addSimple" class="action.AppAction" method="addSimpleJson">
+        	<result type="json"></result>
+        </action>
+        
+  	    <action name="addDynamic" class="action.AppAction" method="addDynamicJson">
+            <result type="json"></result>
+        </action>
+                            
+        <action name="apply" class="action.AppAction" method="apply">
+            <result type="json"></result>
+        </action>
+        
+        <action name="remove" class="action.AppAction" method="remove">
+            <result type="json"></result>
+        </action>
+        
+        <action name="callApp" class="action.AppAction" method="call">
+            <result type="json">
+            	<param name="root">appJson</param>
+            </result>
+        </action>
+        
+        <action name="callWebServ" class="action.WebserviceAction" method="call">
+        	<result type="json">
+            	<param name="root">resultJson</param>
+            </result>
+        </action>
+          
+	</package>
+
+</struts>

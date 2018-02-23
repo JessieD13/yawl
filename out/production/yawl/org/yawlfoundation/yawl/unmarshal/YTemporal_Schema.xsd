@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:yawl="http://www.yawlfoundation.org/yawlschema"
+           targetNamespace="http://www.yawlfoundation.org/yawlschema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="2.2">
+
+	<!--	
+	##########################################################################################
+		DECLARE TIME INFORMATION TYPES
+	##########################################################################################
+	-->
+	<xs:simpleType name="TimePointType">
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="TimeSpanType">
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:complexType name="TimeIntervalType">
+		<xs:sequence>
+			<xs:element name="start" type="yawl:TimePointType"/>
+			<xs:element name="end" type="yawl:TimePointType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SpecialTimeLabelType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOW"/>
+			<xs:enumeration value="UntilChange"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--	
+	##########################################################################################
+		DECLARE TEMPORAL PORPERTY BASE TYPES
+	##########################################################################################
+	-->
+	<xs:simpleType name="CreateTimeType">
+		<xs:restriction base="yawl:TimePointType"/>
+	</xs:simpleType>
+	<xs:complexType name="ValidTimeIntervalType">
+		<xs:complexContent>
+			<xs:extension base="yawl:TimeIntervalType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ValidTimeSpanType">
+		<xs:restriction base="yawl:TimeSpanType"/>
+	</xs:simpleType>
+</xs:schema>

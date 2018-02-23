@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="sysuClient:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/sysuClient_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="sysuClient" />
+          <element id="module-output" name="resourceService" />
+          <element id="module-output" name="yawl" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="clientlib" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="sysuClient/web/Web" />
+      <element id="javaee-facet-resources" facet="resourceService/web/Web" />
+      <element id="javaee-facet-resources" facet="yawl/web/Web" />
+    </root>
+  </artifact>
+</component>

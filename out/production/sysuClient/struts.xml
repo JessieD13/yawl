@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.ui.theme" value="simple" />
+    
+    <include file="struts-new.xml"></include>
+    <include file="struts-advanced.xml"></include>
+    
+    <package name="default" namespace="/" extends="struts-default">
+    
+        <action name="signin" class="action.UserAction" method="signin">
+            <result name="admin" type="redirectAction">admin/unoffered.action</result>
+            <!-- <result name="user" type="redirectAction">workqueue/offered.action</result> -->
+            <result name="user" type="redirectAction">new/workqueue.action</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        
+        <!-- Add actions here -->
+
+    </package>
+    
+	<package name="workqueue" namespace="/workqueue" extends="struts-default">
+	
+    	<action name="offered" class="action.WorkQueueAction" method="offered">
+    		<result name="success">/workqueue/offered.jsp</result>
+    		<result name="partial">/workqueue/partial-offered.jsp</result>
+    	</action>
+    	
+    	<action name="allocated" class="action.WorkQueueAction" method="allocated">
+    		<result name="success">/workqueue/allocated.jsp</result>
+    	</action>
+    	
+    	<action name="started" class="action.WorkQueueAction" method="started">
+    		<result name="success">/workqueue/started.jsp</result>
+    		<result name="partial">/workqueue/partial-started.jsp</result>
+    	</action>
+    	
+    	<action name="suspended" class="action.WorkQueueAction" method="suspended">
+    		<result name="success">/workqueue/suspended.jsp</result>
+    	</action>
+    	
+    	<action name="accept" class="action.WorkItemAction" method="accept">
+    		<result name="success">/workqueue/offered.jsp</result>
+    		<result name="partial">/workqueue/partial-offered.jsp</result>
+    	</action>
+    	
+    	<action name="acceptstart" class="action.WorkItemAction" method="acceptstart">
+    		<result name="success">/workqueue/offered.jsp</result>
+    		<result name="partial">/workqueue/partial-offered.jsp</result>
+    	</action>
+
+    	<action name="start" class="action.WorkItemAction" method="start">
+    		<result name="success">/workqueue/allocated.jsp</result>
+    	</action>
+    	
+    	<action name="complete" class="action.WorkItemAction" method="complete">
+    		<result name="success" type="redirect">/workqueue/started.action</result>
+    		<result name="partial" type="redirect">/workqueue/started.action?isPartialReq=true</result>
+    	</action>
+    	
+    	<action name="deallocate" class="action.WorkItemAction" method="deallocate">
+    		<result name="success">/workqueue/allocated.jsp</result>
+    	</action>
+    	
+    	<action name="view" class="action.WorkItemAction" method="view">
+    		<result name="dynamic">/workitem/dynamic-form.jsp</result>
+    		<result name="partial">/workitem/dynamic-form.jsp</result>
+    		<result name="custom" type="redirect">${direct}</result>
+    	</action>
+    	
+    	<action name="update" class="action.WorkItemAction" method="update">
+    		<result name="success" type="redirect">${direct}</result>
+    	</action>
+    	
+<!--     	<action name="delegate" class="action.WorkItemAction" method="delegate">
+    		<result name="success">/workqueue/allocated.jsp</result>
+    	</action> -->
+    	
+		<action name="skip" class="action.WorkItemAction" method="skip">
+    		<result name="success">/workqueue/allocated.jsp</result>
+    	</action>
+    	
+    </package>
+    
+    <package name="admin" namespace="/admin" extends="struts-default">
+		<action name="unoffered" class="action.AdminAction" method="unoffered">
+    		<result name="success">/admin/unoffered.jsp</result>
+    	</action>
+    </package>
+	
+	<package name="case" namespace="/case" extends="struts-default">
+	
+    	<action name="mgt" class="action.CaseAction" method="manage">
+    		<result name="success">/case/mgt.jsp</result>
+    		<result name="partial">/case/partial-mgt.jsp</result>
+    	</action>
+    	
+    	<action name="launch" class="action.CaseAction" method="launch">
+    		<result name="success">/case/mgt.jsp</result>
+    		<result name="partial">/case/partial-mgt.jsp</result>
+    	</action>
+    	
+    	<action name="running" class="action.CaseAction" method="running">
+    		<result name="success">/case/running.jsp</result>
+    		<result name="partial">/case/partial-running.jsp</result>
+    	</action>
+    	
+    	<action name="cancel" class="action.CaseAction" method="cancel">
+    		<result name="success">/case/running.jsp</result>
+    		<result name="partial">/case/partial-running.jsp</result>
+    	</action>
+    	
+    	<action name="upload" class="action.CaseAction" method="upload">
+    		<result name="success">/case/mgt.jsp</result>
+    	</action>
+    	
+    </package>
+    
+   	<package name="workdesk" namespace="/workdesk" extends="json-default">
+   		<action name="refresh-workqueue" class="action.WorkdeskAction" method="refreshWorkQueue">
+   			<result name="success" type="json">
+   				<param name="data">data</param>
+   			</result>
+   		</action>
+   		<action name="refresh-casemgt" class="action.WorkdeskAction" method="refreshCaseMgt">
+   			<result name="success" type="json">
+   				<param name="data">data</param>
+   			</result>
+   		</action>
+   	</package>
+    
+    <package name="service" namespace="/service" extends="struts-default">
+    	<action name="registered" class="action.ServiceAction" method="registered">
+    		<result name="success">/service/mgt.jsp</result>
+    	</action>
+    	<action name="register" class="action.ServiceAction" method="register">
+    		<result name="success">/service/mgt.jsp</result>
+    	</action>
+    	<action name="remove" class="action.ServiceAction" method="remove">
+    		<result name="success">/service/mgt.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="visual" namespace="/visual" extends="struts-default">
+    	<action name="process" class="action.VisualAction" method="process">
+    		<result name="success">/visual/process.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="application" namespace="/app" extends="struts-default">
+		
+		<action name="all" class="action.AppAction" method="all">
+            <result name="success">/app/all.jsp</result>
+        </action>
+        
+        <action name="available" class="action.AppAction" method="available">
+        	<result name="success">/app/avai.jsp</result>
+        </action>
+        
+        <action name="apply" class="action.AppAction" method="apply">
+        	<result name="success">/app/all.jsp</result>
+        </action>
+         
+        <action name="addSimple" class="action.AppAction" method="addSimple">
+        	<result name="success">/app/all.jsp</result>
+        </action>
+        
+        <action name="addDynamic" class="action.AppAction" method="addDynamic">
+        	<result name="success">/app/all.jsp</result>
+        </action>
+        
+        <!-- <action name="view" class="action.AppAction" method="view">
+        	<result name="success">/app/view.jsp</result>
+        </action>
+         -->
+	</package>
+	
+	<package name="test" namespace="/" extends="json-default">
+        <action name="jsonAction" class="demo.JsonAction">
+            <result type="json">
+                <!-- 此处将reslut的值返回给客户端，root的值对应要返回的值的属性result
+                      注意：root为固定写法，否则不会把result的值返回给客户端 -->
+                <param name="root">result</param>
+            </result>
+        </action>
+        
+        
+        
+    </package>
+    
+</struts>

@@ -1,0 +1,173 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<!DOCTYPE html>
+<html lang="zh-Ch">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SYSU WfClient: Workdesk</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/offcanvas.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+	<%@ include file="common/header.jsp" %>
+	
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+        
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="case.action" class="list-group-item">过程管理</a>
+            <a href="#" class="list-group-item">资源管理</a>
+            <a href="app.action" class="list-group-item active">应用管理</a>
+            <a href="service.action" class="list-group-item">YAWL组件管理</a>
+          </div>
+        </div><!--/span-->
+        
+        <div class="col-xs-12 col-sm-9">
+        	<h4>所有应用</h4><hr/>
+        	<table class="table table-striped table-condensed" id="applist">
+        		<thead>
+					<tr>
+					<th>#</th>
+					<th>App Name</th>
+					<th>Description</th>
+					<th>Actions</th>
+					</tr></thead>
+				<tbody id="appBody">
+
+				</tbody>
+			</table>
+			
+			
+		 
+			
+        </div><!--/span-->
+
+      </div><!--/row-->
+
+      <%@ include file="common/footer.jsp" %>
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/offcanvas.js"></script>
+    <script src="js/form2json.js"></script>
+    <script type="text/javascript">
+    $(function(){
+		$("#nav-mgt").addClass("active");
+			
+		updateAppQueuee();
+		
+		var paramNum = 1;	
+		
+		$("#addBtn").click(function() {
+			paramNum++;
+			var str = '<div class="form-group"><div class="col-sm-offset-2 col-sm-4"><input type="text" class="form-control" ';
+			str += 'name="paramName_';
+			str += paramNum;
+			str += '" placeholder="name"></div><div class="col-sm-4"><input type="text" class="form-control" ';
+			str += 'name="paramType_';
+			str += paramNum;
+			str += '" placeholder="ex:String"></div><div class="col-sm-1"><button class="btn btn-danger" onclick="deltr(this)">Delete</button></div></div>';
+			$("#btns").before(str);
+		});
+			
+		$("#saveBtn").click(function() {
+			var params = 'dynamicJson=' + $("#dynamicForm").form2json();
+			$.ajax({
+				url:"addDynamic.action",
+				type	:	"post",
+				data	:	params,
+				dataType:	"json",
+				success	:	updateAppQueuee
+	        });
+	    });
+    });
+     
+	function updateAppQueuee() {
+	
+		$.ajax({
+			url		:	"loadApps.action",
+			type	:	"post",
+			dataType:	"json",
+			success	:	function(appsJson) {
+				$("#appBody").empty();
+				var apps = JSON.parse(appsJson);
+	
+				$(apps).each(function() {
+					var str = $('<tr/>');
+					str.append("<td>"+this.appid+"</td>");
+					str.append("<td>"+this.appName+"</td>");
+					str.append("<td>"+this.appDesc+"</td>");
+					if(this.available == 'true'){
+						str.append("<td><button class='btn btn-warning btn-xs' onclick='unapply(\""+ this.appid +"\")'>Remove</button></td>");
+					} else {
+						str.append("<td><button class='btn btn-success btn-xs' onclick='apply(\""+ this.appid +"\")'>Add</button></td>");
+					}
+					
+					$("tbody").append(str);
+				})
+			}
+		});
+		
+	}
+	
+	function apply(appid){
+    	$.ajax({
+			url		:	"apply.action",
+			data	:	"appid="+appid,
+			type	:	"post",
+			dataType:	"json",
+			success	:	function(){
+				updateAppQueuee();
+			}
+		});		
+	}
+	
+	function unapply(appid){
+    	$.ajax({
+			url		:	"remove.action",
+			data	:	"appid="+appid,
+			type	:	"post",
+			dataType:	"json",
+			success	:	function(){
+				updateAppQueuee();
+			}
+		});		
+	}
+	
+    function addSimple(){
+    	$.ajax({
+			url		:	"addSimple.action",
+			data	:	$("#simpleForm").serialize(),
+			type	:	"post",
+			dataType:	"json",
+			success	:	function(){
+				updateAppQueuee();
+			}
+		});
+    }
+	
+	function deltr(delbtn){
+		$(delbtn).parent().parent().remove();
+	};
+	
+    </script>
+  </body>
+</html>

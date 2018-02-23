@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+	~ limingyao
+	~ Temporal workflow
+	~ Expiry task 
+	-->
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="org.yawlfoundation.yawl.engine.YExpiryTask"
+           table="expirytasks">
+
+        <id name="itemID" access="field">
+   		    <generator class="assigned"/>
+    	</id>
+
+        <!-- <property name="_expiryTime" column="expirytime" type="long" access="field"/> -->
+    </class>
+
+</hibernate-mapping>

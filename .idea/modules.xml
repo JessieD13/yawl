@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/resourceService/resourceService.iml" filepath="$PROJECT_DIR$/resourceService/resourceService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sysuClient/sysuClient.iml" filepath="$PROJECT_DIR$/sysuClient/sysuClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/temporal.iml" filepath="$PROJECT_DIR$/temporal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yawl/yawl.iml" filepath="$PROJECT_DIR$/yawl/yawl.iml" />
+    </modules>
+  </component>
+</project>

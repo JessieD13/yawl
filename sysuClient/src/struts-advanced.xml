@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="caseinfo" namespace="/new" extends="json-default">
+	    <action name="addPriority" class="action.CaseinfoAction" method="addPriority">
+	    	<result type="json"></result>
+        </action>
+        
+        <action name="loadPriorityQueue" class="action.WorkQueueAction" method="loadPriorityQueue">
+        	<result type="json">
+        		<param name="root">itemsJson</param>
+        	</result>
+        </action>
+        
+        <action name="addDifficulty" class="action.CaseinfoAction" method="addDifficulty">
+	    	<result type="json"></result>
+        </action>
+        
+        <action name="loadDifficultyQueue" class="action.WorkQueueAction" method="loadDifficultyQueue">
+        	<result type="json">
+        		<param name="root">itemsJson</param>
+        	</result>
+        </action>
+           
+        <action name="addClientLevel" class="action.CaseinfoAction" method="addClientLevel">
+	    	<result type="json"></result>
+        </action>
+        
+        <action name="loadClientLevelQueue" class="action.WorkQueueAction" method="loadClientLevelQueue">
+        	<result type="json">
+        		<param name="root">itemsJson</param>
+        	</result>
+        </action>
+        
+	</package>
+	
+	<package name="Pile" namespace="/new" extends="json-default">
+
+        <action name="pile" class="action.PileAction" method="loadPileQueue">
+        	<result type="json">
+        		<param name="root">itemsJson</param>
+        	</result>
+        </action>
+	
+	</package>
+		
+	<package name="TSP" namespace="/new" extends="json-default">
+		<action name="readInfo" class="action.WorkItemInfoAction" method="readInfo">
+			<result type="json">
+				<param name="root">infosJson</param>
+			</result>
+		</action>
+		
+		<action name="saveInfo" class="action.WorkItemInfoAction" method="saveInfo">
+			<result type="json"></result>
+		</action>
+		
+		<action name="tsp" class="action.TSPAction" method="tspRoute">
+			<result type="json">
+				<param name="root">optimalJson</param>
+			</result>
+		</action>
+	</package>
+
+</struts>
