@@ -148,8 +148,8 @@ public class YEngine implements InterfaceADesign,
             _logger.debug("--> YEngine: Creating initial instance");
 
             // Initialise the persistence layer & restore state
-            _persisting = persisting;
-            //_persisting = true;
+            //_persisting = persisting;
+            _persisting = true;
             if (_persisting) {
                 _pmgr.initialise(true);
                 _pmgr.setStatisticsEnabled(gatherHbnStats);
