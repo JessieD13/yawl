@@ -47,7 +47,7 @@ public class WorkQueueAction extends ActionSupport{
 		Set<WorkItemRecord> items = workQueueServ.getWorkQueue((String) session.get("userid"), "started");
 		
 		itemsJson = this.toJson(items);
-		
+		System.out.println("\nloadStarted: "+itemsJson+"\n");
 		return SUCCESS;
 	}
 	
@@ -136,7 +136,7 @@ public class WorkQueueAction extends ActionSupport{
 		}
 
 		itemsJson = this.toJson(items);
-		
+		System.out.println(itemsJson);
 		return SUCCESS;
 	}
 	

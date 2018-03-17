@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import dao.ExeQueueDAO;
 import org.yawlfoundation.yawl.elements.data.YParameter;
 import org.yawlfoundation.yawl.engine.interfce.WorkItemRecord;
 import org.yawlfoundation.yawl.resourcing.QueueSet;
@@ -21,7 +22,8 @@ public class WorkQueueService{
 	String _userName = "admin";
 	String _password = "YAWL";
 	String _defURI = "http://localhost:8080/resourceService/workqueuegateway";
-	
+
+	ExeQueueService exeQueueService = new ExeQueueService();
 	WorkQueueGatewayClientAdapter wqAdapter = new WorkQueueGatewayClientAdapter(_defURI);
 	Map<String, Object> session = ActionContext.getContext().getSession();
 
@@ -129,6 +131,9 @@ public class WorkQueueService{
 			Participant pa = this.getParticipantFromUserid(userid);			
 			try {
 				wqAdapter.acceptOffer(pa.getID(), selectedItem, _handle);
+				if (!exeQueueService.findItem(selectedItem)) {
+					exeQueueService.addExeItem(selectedItem);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ResourceGatewayException e) {

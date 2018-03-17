@@ -29,7 +29,8 @@
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
           	<a href="index.action" class="list-group-item">首页</a>
-            <a href="workqueue.action" class="list-group-item">我的任务列表</a>
+			  <a href="exeQueue.action" class="list-group-item">我的执行队列</a>
+			  <a href="workqueue.action" class="list-group-item">我的任务列表</a>
             <a href="participate.action" class="list-group-item active">我参与的案例</a>
             <a href="monitor.action" class="list-group-item">我关注的流程</a>
           </div>

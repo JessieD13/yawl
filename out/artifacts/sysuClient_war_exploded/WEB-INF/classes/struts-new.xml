@@ -35,10 +35,37 @@
         	<result name="success">/new/service.jsp</result>
         </action>
 
+        <action name="exeQueue" class="action.ExeQueueAction">
+            <result name="success">/new/exeQueue.jsp</result>
+        </action>
+
 	</package>
 	
 	<package name="Json" namespace="/new" extends="json-default">
-        
+
+        <action name="loadExecuting" class="action.ExeQueueAction" method="loadExecuting">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+
+        <action name="loadDeadline" class="action.ExeQueueAction" method="loadDeadline">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+
+        <action name="loadEnable" class="action.ExeQueueAction" method="loadEnable">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
+
+        <action name="loadExetime" class="action.ExeQueueAction" method="loadExetime">
+            <result type="json">
+                <param name="root">itemsJson</param>
+            </result>
+        </action>
         
         <!-- 获取角色 -->
         <action name="getAllRole" class="action.UserAction" method="getAllRole">
@@ -283,6 +310,7 @@
             	<param name="root">resultJson</param>
             </result>
         </action>
+
           
 	</package>
 

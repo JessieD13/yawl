@@ -706,7 +706,7 @@ public class WorkItemRecord implements Cloneable, Comparable {
 
     private void set_id(long id) { _id = id; }
 
-    private long get_id() { return _id; }
+    public long get_id() { return _id; }
 
     /********************************************************************************/
 
