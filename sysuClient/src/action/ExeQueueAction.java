@@ -4,13 +4,18 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.Caseinfo;
 import dao.ExeQueue;
+import net.sf.json.JSON;
 import org.json.JSONArray;
 import org.yawlfoundation.yawl.engine.interfce.WorkItemRecord;
 import service.CaseService;
 import service.ExeQueueService;
 import service.SpecService;
+import service.TimeAssessService;
+import service.TimeAssessService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,9 +27,11 @@ public class ExeQueueAction extends ActionSupport {
     private CaseService casServ = new CaseService();
     private SpecService specServ = new SpecService();
     private Map<String, Object> session = ActionContext.getContext().getSession();
+    private TimeAssessService timeAssessService = new TimeAssessService();
 
 
     private String itemsJson;
+    private String condition;
 
     public String execute() {
         return SUCCESS;
@@ -67,6 +74,7 @@ public class ExeQueueAction extends ActionSupport {
             for (int i = 1; i <= count; i++) {
                 Map<String, String> m = new HashMap<String, String>();
                 WorkItemRecord item = exeQueueServ.getWorkItem(exeItems.get(i).getID());
+                String timesurplus = timeAssessService.calTimeSurplus(exeItems, i);
                 /**
                  * 这样绕个弯是有原因的!!!
                  * 必须用getWorkItem()方法取得item，这样取得的WorkitemRecord的信息是完整的
@@ -85,6 +93,7 @@ public class ExeQueueAction extends ActionSupport {
                 m.put("status", item.getStatus() );
                 m.put("executeTime", item.getExecuteTime());
                 m.put("latestStartTime", item.getLatestStartTime());
+                m.put("timeSurplus", timesurplus);
 
                 if(item.isEdited())
                     m.put("isEdited", "true");
@@ -108,12 +117,39 @@ public class ExeQueueAction extends ActionSupport {
         }
         return json.toString();
     }
+
+    public String loadOverallAssess() {
+        String userid = (String)session.get("userid");
+        HashMap<Integer, WorkItemRecord> exeItems = exeQueueServ.getExecutingQueue(userid);
+        ArrayList<Double> l = new ArrayList<Double>();
+        for (int i = 1; i < exeItems.size(); i++) {
+            String t = timeAssessService.calTimeSurplus(exeItems, i);
+            l.add(Double.parseDouble(t));
+        }
+        int con = timeAssessService.overallQueueAsses(l);
+        // 优秀 = 2
+        // 良好 = 1
+        // 超时异常 = 0
+        JSONArray jn = new JSONArray();
+        jn.put(String.valueOf(con));
+        condition = jn.toString();
+        return SUCCESS;
+    }
+
     public String getItemsJson() {
         return itemsJson;
     }
 
     public void setItemsJson(String items) {
         this.itemsJson = items;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String num) {
+        this.condition = num;
     }
 
 

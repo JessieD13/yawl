@@ -40,6 +40,8 @@
         </action>
 
 	</package>
+
+
 	
 	<package name="Json" namespace="/new" extends="json-default">
 
@@ -48,6 +50,13 @@
                 <param name="root">itemsJson</param>
             </result>
         </action>
+
+        <action name="loadOverallAssess" class="action.ExeQueueAction" method="loadOverallAssess">
+            <result type="json">
+                <param name="root">condition</param>
+            </result>
+        </action>
+
 
         <action name="loadDeadline" class="action.ExeQueueAction" method="loadDeadline">
             <result type="json">

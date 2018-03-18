@@ -74,12 +74,15 @@
                                     <th>Task</th>
                                     <th>ExecuteTime</th>
                                     <th>LatestStartTime</th>
-                                    <th>Status</th>
+                                    <th>TimeSurplus</th>
                                 </tr></thead>
                                 <tbody id="tbody1">
 
                                 </tbody>
                             </table><br/><br/><br/>
+                            <p id ="condition">
+
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -104,6 +107,7 @@
         $("#nav-workdesk").addClass("active");
         console.log("\n\n\n页面启动\n\n\n");
         updateTable();
+
 
         $("#default").click(function() {
             $.ajax({
@@ -132,7 +136,6 @@
 
     function updateTable2(itemsJson) {
         console.log("\nupdateTable2\n");
-        console.log(itemsJson);
         var items = JSON.parse(itemsJson);
         $("#tbody1").empty();
         $(items).each(function() {
@@ -141,8 +144,37 @@
             str.append("<td>"+this.task+"</td>");
             str.append("<td>"+this.executeTime+"</td>");
             str.append("<td>"+this.latestStartTime+"</td>");
-            str.append("<td>"+this.status+"</td>");
+            str.append("<td>"+this.timeSurplus+"</td>");
             $("#tbody1").append(str);
+        })
+
+        updateQueueAssess();
+    }
+
+    function getQueueAssess(condition) {
+        $("#condition").empty();
+        var con = JSON.parse(condition);
+        var str = "sss";
+        if (con == "2") {
+            str = "优秀";
+        } else if (con == "1") {
+            str = "良好";
+        } else if (con == "0") {
+            str = "超时异常";
+        }
+
+        $("#condition").append(str);
+
+    }
+
+    function updateQueueAssess() {
+        $.ajax({
+            url: "loadOverallAssess.action",
+            type: "post",
+            dataType: "json",
+            success: function (condition) {
+                getQueueAssess(condition);
+            }
         })
     }
 
