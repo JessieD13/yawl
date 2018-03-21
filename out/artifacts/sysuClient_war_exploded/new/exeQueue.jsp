@@ -145,6 +145,14 @@
             str.append("<td>"+this.executeTime+"</td>");
             str.append("<td>"+this.latestStartTime+"</td>");
             str.append("<td>"+this.timeSurplus+"</td>");
+
+            var btns = $('<td/>');
+            btns.append("<button class='btn btn-default btn-xs' onclick='start(\""+this.id+"\")'>开始</button>&nbsp;");
+            //btns.append("<button class='btn btn-default btn-xs' onclick='deallocate(\""+this.id+"\")'>拒绝</button>&nbsp;");
+            //btns.append("<button class='btn btn-default btn-xs' onclick='delegate(\""+this.id+"\")'>委派</button>&nbsp;");
+            /* btns.append("<button class='btn btn-default btn-xs' onclick='skip(\""+this.id+"\")'>跳过</button>&nbsp;"); */
+            /* btns.append("<button class='btn btn-default btn-xs' onclick='pile(\""+this.id+"\")'>打包</button>"); */
+            str.append(btns);
             $("#tbody1").append(str);
         })
 
@@ -152,10 +160,8 @@
     }
 
     function getQueueAssess(condition) {
-        console.log("\nupdateQueueAssess\n");
         $("#condition").empty();
         var con = JSON.parse(condition);
-        console.log("\n"+con);
         var str = "sss";
         if (con == "2") {
             str = "优秀";
@@ -229,6 +235,18 @@
                 updateTable2(itemsjson)
             }
         });
+    }
+
+    function start(id) {
+
+        $.ajax({
+            url		:	"exeQueueStart.action",
+            data	:	"selectedItem="+id,
+            type	:	"post",
+            dataType:	"json",
+            success	:	updateTable
+        });
+
     }
 
 

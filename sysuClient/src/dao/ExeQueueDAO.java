@@ -16,10 +16,11 @@ import java.util.Objects;
  */
 public class ExeQueueDAO extends BaseHibernateDAO {
     private static final Logger log = LoggerFactory
-        .getLogger(CaseinfoDAO.class);
+        .getLogger(ExeQueueDAO.class);
     // property constants
     public static final String WIR_ID = "wir_id";
     public static final String ORDER = "exe_order";
+    public static final String USER_ID = "participant";
 
     public void save(ExeQueue transientInstance) {
         log.debug("saving ExeQueue instance");
@@ -62,10 +63,10 @@ public class ExeQueueDAO extends BaseHibernateDAO {
         getSession().close();
     }
 
-    public void updateWhenDelete(int delOrder) {
+    public void updateWhenDelete(int delOrder, String pa) {
         Transaction tran = getSession().beginTransaction();
         try {
-            List allNext = findAllNextOrder(delOrder);
+            List allNext = findAllNextOrder(delOrder, pa);
             if (!allNext.isEmpty()) {
                 for (int i = 0; i < allNext.size(); i++) {
                     String sql = "update ExeQueue e set e.exe_order = ? where e.wir_id = ?";
@@ -89,8 +90,9 @@ public class ExeQueueDAO extends BaseHibernateDAO {
         log.debug("deleting ExeQueue instance");
         try {
             int delOrder = persistentInstance.getOrder();
+            String pa = persistentInstance.getParticipant();
             getSession().delete(persistentInstance);
-            updateWhenDelete(delOrder);
+            updateWhenDelete(delOrder, pa);
             log.debug("delete successful");
         } catch (RuntimeException re) {
             log.error("delete failed", re);
@@ -155,12 +157,13 @@ public class ExeQueueDAO extends BaseHibernateDAO {
         return findByOrder(preOrder);
     }
 
-    public List findAllNextOrder(Object value) {
+    public List findAllNextOrder(Object value, Object userid) {
         try {
             String queryString = "from ExeQueue as model where model."
-                    + ORDER + "> ?";
+                    + ORDER + "> ? and model." + USER_ID + "= ?";
             Query queryObject = getSession().createQuery(queryString);
             queryObject.setParameter(0, value);
+            queryObject.setParameter(1, userid);
             List l = queryObject.list();
             System.out.println("\n"+l.size()+"\n");
             return queryObject.list();
@@ -170,11 +173,13 @@ public class ExeQueueDAO extends BaseHibernateDAO {
         }
     }
 
-    public List findAll() {
+    public List findAllByPa(Object userid) {
         log.debug("finding all ExeQueue instances");
         try {
-            String queryString = "from ExeQueue";
+            String queryString = "from ExeQueue as model where model."
+                    + USER_ID + "= ?";
             Query queryObject = getSession().createQuery(queryString);
+            queryObject.setParameter(0, userid);
             return queryObject.list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -217,11 +222,12 @@ public class ExeQueueDAO extends BaseHibernateDAO {
         }
     }
 
-    public int getCount() {
+    public int getCount(String userid) {
         log.debug("get count");
         try {
-            String queryString = "from ExeQueue";
+            String queryString = "from ExeQueue as model where model." + USER_ID + "= ?";
             Query queryObject = getSession().createQuery(queryString);
+            queryObject.setParameter(0, userid);
             List<ExeQueue> list = queryObject.list();
             if (list == null) return 0;
             return list.size();

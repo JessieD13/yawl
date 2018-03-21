@@ -83,9 +83,13 @@ public class ExeQueueService {
             List list =  exeQueueDAO.findByWir_id(item.getID());
             if (!list.isEmpty()) {
                 ExeQueue e = (ExeQueue) list.get(0);
+                if (!e.getParticipant().equals(userid)) {
+                    e.setParticipant(userid);
+                    e.setOrder(exeQueueDAO.getCount(userid));
+                }
                 result.put(e.getOrder(), item);
             } else {
-                int order = addExeItem(item.getID());
+                int order = addExeItem(item.getID(), userid);
                 result.put(order, item);
             }
         }
@@ -184,10 +188,11 @@ public class ExeQueueService {
 
 
 
-    public int addExeItem(String wir_id) {
+    public int addExeItem(String wir_id, String userid) {
         ExeQueue e= new ExeQueue();
         e.setWir_id(wir_id);
-        int order = exeQueueDAO.getCount() + 1;
+        e.setParticipant(userid);
+        int order = exeQueueDAO.getCount(userid) + 1;
         e.setOrder(order);
         ExeQueue e2 = new ExeQueue();
         exeQueueDAO.save(e);
@@ -219,7 +224,7 @@ public class ExeQueueService {
     }
 
     public void updateData(String userid) {
-        List<ExeQueue> list = exeQueueDAO.findAll();
+        List<ExeQueue> list = exeQueueDAO.findAllByPa(userid);
         Set<WorkItemRecord> list_w = getAllocatedQueue(userid);
         if (!list.isEmpty()) {
             for (int i = 0; i <list.size(); i++) {
@@ -239,4 +244,22 @@ public class ExeQueueService {
             }
         }
     }
+
+    public void start(String userid, String selectedItem) {
+        if(this.connected()) {
+            Participant pa = this.getParticipantFromUserid(userid);
+            try {
+                wqAdapter.startItem(pa.getID(), selectedItem, _handle);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ResourceGatewayException e) {
+                e.printStackTrace();
+            }
+        }
+        ExeQueue e = (ExeQueue) exeQueueDAO.findByWir_id(selectedItem).get(0);
+        exeQueueDAO.delete(e);
+    }
+
+    public void upward(){}
 }

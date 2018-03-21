@@ -11,6 +11,7 @@ public class ExeQueue implements Serializable {
     private int id;
     private String wir_id;
     private Integer exe_order;
+    private String participant;
 
     public Integer getExe_order() {
         return exe_order;
@@ -45,5 +46,11 @@ public class ExeQueue implements Serializable {
     }
     public void setOrder(int order_) {
         this.exe_order = order_;
+    }
+    public String getParticipant() {
+        return this.participant;
+    }
+    public void setParticipant(String pa) {
+        this.participant = pa;
     }
 }

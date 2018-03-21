@@ -187,6 +187,12 @@
         <action name="skip" class="action.WorkItemAction" method="skip">
         	<result type="json"></result>
         </action>
+
+
+
+        <action name="exeQueueStart" class="action.ExeQueueAction" method="startItem">
+            <result type="json"></result>
+        </action>
         
 <!--         <action name="pile" class="action.WorkItemAction" method="pile">
         	<result type="json"></result>

@@ -132,7 +132,7 @@ public class WorkQueueService{
 			try {
 				wqAdapter.acceptOffer(pa.getID(), selectedItem, _handle);
 				if (!exeQueueService.findItem(selectedItem)) {
-					exeQueueService.addExeItem(selectedItem);
+					exeQueueService.addExeItem(selectedItem, userid);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

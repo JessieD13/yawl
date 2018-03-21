@@ -32,6 +32,7 @@ public class ExeQueueAction extends ActionSupport {
 
     private String itemsJson;
     private String condition;
+    private String selectedItem;
 
     public String execute() {
         return SUCCESS;
@@ -136,6 +137,13 @@ public class ExeQueueAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String startItem() {
+        String userid = (String)session.get("userid");
+        exeQueueServ.start(userid, selectedItem);
+        exeItems = exeQueueServ.getExecutingQueue(userid);
+        return SUCCESS;
+    }
+
     public String getItemsJson() {
         return itemsJson;
     }
@@ -152,5 +160,11 @@ public class ExeQueueAction extends ActionSupport {
         this.condition = num;
     }
 
+    public String getSelectedItem() {
+        return selectedItem;
+    }
+    public void setSelectedItem(String s) {
+        this.selectedItem = s;
+    }
 
 }

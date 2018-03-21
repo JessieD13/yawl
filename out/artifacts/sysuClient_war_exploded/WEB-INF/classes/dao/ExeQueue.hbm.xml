@@ -13,6 +13,9 @@
         <property name="wir_id" type="java.lang.String">
             <column name="wir_id"/>
         </property>
+        <property name="participant" type="java.lang.String">
+            <column name="participant"/>
+        </property>
         <property name="exe_order" type="java.lang.Integer">
             <column name="exe_order"/>
         </property>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<hibernate-mapping>
+    <class name="dao.AccomRecord" table="accomplish_record" catalog="client">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="userId" type="java.lang.String">
+            <column name="userId" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="specName" type="java.lang.String">
+            <column name="specName" length="45" not-null="true" />
+        </property>
+        <property name="taskName" type="java.lang.String">
+            <column name="taskName" not-null="true" />
+        </property>
+        <property name="averageExeTime" type="java.lang.String">
+            <column name="averageExeTime" length="45" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>
