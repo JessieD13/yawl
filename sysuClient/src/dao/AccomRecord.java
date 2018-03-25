@@ -9,14 +9,16 @@ public class AccomRecord implements java.io.Serializable{
     private String specName;
     private String taskName;
     private String averageExeTime; //平均执行时间
+    private Integer completedTimes;
 
     public AccomRecord() {}
 
-    public AccomRecord(String userid, String specname, String taskname, String avertime) {
+    public AccomRecord(String userid, String specname, String taskname, String avertime, Integer completedtimes) {
         this.userId = userid;
         this.specName = specname;
         this.taskName = taskname;
         this.averageExeTime = avertime;
+        this.completedTimes = completedtimes;
     }
 
     public Integer getId() {
@@ -49,5 +51,10 @@ public class AccomRecord implements java.io.Serializable{
     public void setAverageExeTime(String avertime) {
         this.averageExeTime = avertime;
     }
-
+    public Integer getCompletedTimes() {
+        return this.completedTimes;
+    }
+    public void setCompletedTimes(int times) {
+        this.completedTimes = times;
+    }
 }

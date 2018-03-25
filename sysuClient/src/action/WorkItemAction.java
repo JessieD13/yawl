@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import org.yawlfoundation.yawl.elements.data.YParameter;
 import org.yawlfoundation.yawl.engine.interfce.WorkItemRecord;
 
+import service.AccomRecordService;
+import service.ExeQueueService;
 import service.WorkQueueService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -33,10 +35,14 @@ public class WorkItemAction extends ActionSupport{
 	private String useridTo;
 	private String paramsJson;
 	
-	private Map<String, Object> session = ActionContext.getContext().getSession();	
+	private Map<String, Object> session = ActionContext.getContext().getSession();
+	private AccomRecordService accomRecordService = new AccomRecordService();
+	private ExeQueueService exeQueueService = new ExeQueueService();
 	
 	public String accept() {
-		workQueueService.accept((String) session.get("userid"), selectedItem);
+		String userid = (String) session.get("userid");
+		workQueueService.accept(userid, selectedItem);
+		exeQueueService.updateData(userid);
 		items = workQueueService.getWorkQueue((String) session.get("userid"), "offered");
 		
 		if (isPartialReq) {
@@ -47,7 +53,9 @@ public class WorkItemAction extends ActionSupport{
 	}
 	
 	public String acceptstart() {
-		workQueueService.acceptstart((String) session.get("userid"), selectedItem);
+		String userid = (String) session.get("userid");
+		workQueueService.acceptstart(userid, selectedItem);
+		exeQueueService.updateData(userid);
 		items = workQueueService.getWorkQueue((String) session.get("userid"), "offered");
 		if (isPartialReq) {
 			return "partial";
@@ -63,8 +71,11 @@ public class WorkItemAction extends ActionSupport{
 	}
 	
 	public String complete() {
-		if (selectedItem != null)
-			workQueueService.complete((String)session.get("userid"), selectedItem);
+		if (selectedItem != null) {
+			String userid = (String) session.get("userid");
+
+			workQueueService.complete(userid, selectedItem);
+		}
 		items = workQueueService.getWorkQueue((String) session.get("userid"), "started");
 		if (isPartialReq) {
 			return "partial";

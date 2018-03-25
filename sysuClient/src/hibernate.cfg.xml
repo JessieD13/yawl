@@ -32,6 +32,7 @@
 		<mapping resource="dao/Wirinfo.hbm.xml" />
 		<mapping resource="dao/Caseinfo.hbm.xml" />
 		<mapping resource="dao/ExeQueue.hbm.xml" />
+		<mapping resource="dao/AccomRecord.hbm.xml" />
 
 	</session-factory>
 

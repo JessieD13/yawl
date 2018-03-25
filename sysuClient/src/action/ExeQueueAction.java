@@ -48,6 +48,7 @@ public class ExeQueueAction extends ActionSupport {
 
     public String loadDeadline() {
         String userid = (String)session.get("userid");
+        exeQueueServ.updateData(userid);
         HashMap<Integer, WorkItemRecord> exeItems = exeQueueServ.getDeadlineQueue(userid);
         itemsJson = this.toJson(exeItems);
         return SUCCESS;
@@ -55,6 +56,7 @@ public class ExeQueueAction extends ActionSupport {
 
     public String loadEnable() {
         String userid = (String)session.get("userid");
+        exeQueueServ.updateData(userid);
         HashMap<Integer, WorkItemRecord> exeItems = exeQueueServ.getEnableQueue(userid);
         itemsJson = this.toJson(exeItems);
         return SUCCESS;
@@ -62,6 +64,7 @@ public class ExeQueueAction extends ActionSupport {
 
     public String loadExetime() {
         String userid = (String)session.get("userid");
+        exeQueueServ.updateData(userid);
         HashMap<Integer, WorkItemRecord> exeItems = exeQueueServ.getExeTimeQueue(userid);
         itemsJson = this.toJson(exeItems);
         return SUCCESS;

@@ -743,7 +743,18 @@
 	}
 	
 	function complete(itemid) {
-		$.ajax({
+
+        $.ajax({
+            url		:	"doRecord.action",
+            data	:	"selectedItem="+itemid,
+            type	:	"post",
+            dataType:	"json",
+            success	:	function(){
+                alert("Success!");
+            }
+        });
+
+        $.ajax({
 			url		:	"complete.action",
 			data	:	"selectedItem="+itemid,
 			type	:	"post",

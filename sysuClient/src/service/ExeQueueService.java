@@ -194,14 +194,18 @@ public class ExeQueueService {
         e.setParticipant(userid);
         int order = exeQueueDAO.getCount(userid) + 1;
         e.setOrder(order);
-        ExeQueue e2 = new ExeQueue();
-        exeQueueDAO.save(e);
+        if (exeQueueDAO.findByExample(e).isEmpty()) {
+            exeQueueDAO.save(e);
+        }
         return order;
     }
 
     public boolean findItem(String wir_id) {
         List l = exeQueueDAO.findByWir_id(wir_id);
-        if (l.isEmpty()) return false;
+        if (l.isEmpty()) {
+            System.out.println("\n\nnot found\n\n");
+            return false;
+        }
         return true;
     }
 

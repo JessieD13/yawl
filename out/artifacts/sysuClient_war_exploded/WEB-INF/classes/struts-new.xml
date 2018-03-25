@@ -189,6 +189,9 @@
         </action>
 
 
+        <action name="doRecord" class="action.AccomRecordAction" method="doRecord">
+            <result type="json"></result>
+        </action>
 
         <action name="exeQueueStart" class="action.ExeQueueAction" method="startItem">
             <result type="json"></result>
